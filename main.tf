@@ -11,7 +11,7 @@ terraform {
   }
   required_version = ">= 1.1.0"
 
-cloud {
+  cloud {
     organization = "3xmgroup"
 
     workspaces {
@@ -33,7 +33,7 @@ resource "aws_codepipeline" "codepipeline" {
     location = aws_s3_bucket.codepipeline_bucket.bucket
     type     = "S3"
 
-   
+
   }
 
   stage {
@@ -50,15 +50,15 @@ resource "aws_codepipeline" "codepipeline" {
       namespace        = "SourceVariables"
 
       configuration = {
-        ConnectionArn    = aws_codestarconnections_connection.codepipeline.arn
-        FullRepositoryId = "po3xmgroup/testS3StaticSite"
-        BranchName       = "dev"
+        ConnectionArn        = aws_codestarconnections_connection.codepipeline.arn
+        FullRepositoryId     = "po3xmgroup/testS3StaticSite"
+        BranchName           = "dev"
         OutputArtifactFormat = "CODE_ZIP"
       }
     }
   }
 
-  
+
 
   stage {
     name = "Deploy"
@@ -70,12 +70,12 @@ resource "aws_codepipeline" "codepipeline" {
       owner           = "AWS"
       provider        = "S3"
       input_artifacts = ["SourceArtifact"]
-      namespace = "DeployVariables"
+      namespace       = "DeployVariables"
       version         = "1"
 
       configuration = {
-        Extract = "true"
-       BucketName = "s3-static-website-training"
+        Extract    = "true"
+        BucketName = "s3-static-website-training"
       }
     }
   }

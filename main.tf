@@ -140,6 +140,6 @@ resource "aws_iam_role_policy" "codepipeline_policy" {
   name = "codepipeline_policy"
   role = aws_iam_role.codepipeline_role.id
 
-  policy = templatefile("terraform-gh-actions/terraform-staticSite-gh-actions/policy.json", { aws_codepipeline = "tf-test-pipeline" })
+  policy = templatefile("./policy.json", { aws_codepipeline = "tf-test-pipeline" })
 
 }

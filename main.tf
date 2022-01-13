@@ -50,7 +50,7 @@ resource "aws_codepipeline" "codepipeline" {
       namespace        = "SourceVariables"
 
       configuration = {
-        ConnectionArn        = aws_codestarconnections_connection.codepipeline.arn
+        ConnectionArn        = "arn:aws:codestar-connections:us-east-1:424819937310:connection/8bd6b56e-05ef-4e21-b85e-cfed60d4c798"
         FullRepositoryId     = "po3xmgroup/testS3StaticSite"
         BranchName           = "dev"
         OutputArtifactFormat = "CODE_ZIP"
@@ -118,7 +118,7 @@ EOF
   }
 }
 resource "aws_iam_role" "codepipeline_role" {
-  name = "test-role"
+  name = "po3xm-test-role"
 
   assume_role_policy = <<EOF
 {
